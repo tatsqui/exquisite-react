@@ -17,7 +17,11 @@ class PlayerSubmissionForm extends Component {
 
   handleSubmitButton = (event) => {
     event.preventDefault();
-
+ 
+    let newState = this.state
+    let sentence = Object.values(newState).join(" ")
+ 
+    this.props.addSubmissionCallback(sentence)
   }
 
   onValueChange = (event) => {
@@ -38,12 +42,12 @@ class PlayerSubmissionForm extends Component {
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form onSubmit={this.handleSubmitButton} className="PlayerSubmissionForm__form" >
           <div className="PlayerSubmissionForm__poem-inputs">
           {inputFields}
           </div>
           <div className="PlayerSubmissionForm__submit">
-            <input type="submit" onSubmit={this.handleSubmitButton} value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
+            <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
           </div>
         </form>
       </div>
@@ -54,14 +58,14 @@ class PlayerSubmissionForm extends Component {
 PlayerSubmissionForm.propTypes = {
   fields: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.shape({
+    PropTypes.objectOf(PropTypes.shape({
       adj1: PropTypes.string.isRequired,
       adj2: PropTypes.string.isRequired,
       adv: PropTypes.string.isRequired,
       verb: PropTypes.string.isRequired,
       noun1: PropTypes.string.isRequired,
       noun2: PropTypes.string.isRequired,
-    })
+    }))
   ])
 }
 export default PlayerSubmissionForm;

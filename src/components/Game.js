@@ -17,7 +17,8 @@ class Game extends Component {
 
   addRecentSubmission = (newLine) => {
     console.log('You got the callback!')
-    // console.log(newLine)
+    console.log(newLine)
+   
   }
 
   render() {

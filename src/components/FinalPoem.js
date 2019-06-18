@@ -18,4 +18,7 @@ const FinalPoem = (props) => {
   );
 }
 
+FinalPoem.propTypes = {
+  //...proptypes go here!
+}
 export default FinalPoem;
