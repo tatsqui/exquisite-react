@@ -17,6 +17,10 @@ class PlayerSubmissionForm extends Component {
 
   resetForm = () => {
     console.log('resetting form...')
+    let newState = this.state
+    Object.keys(this.state).forEach(key => { newState[key] = '' })
+    
+    this.setState(newState)
   }
 
   handleSubmitButton = (event) => {
