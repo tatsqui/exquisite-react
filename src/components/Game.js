@@ -11,14 +11,18 @@ class Game extends Component {
     super(props);
     this.state = {
       finalSubmission: [],
-      recentLine: ''
+      recentLine: '',
+      round: 1
     }
   }
 
   addRecentSubmission = (newLine) => {
-    console.log('You got the callback!')
-    console.log(newLine)
-   
+    const newState = this.state
+    newState.finalSubmission.push(newLine)
+    newState.round += 1
+
+    this.setState(newState)
+    
   }
 
   render() {
@@ -45,7 +49,11 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addRecentSubmission}/>
+        <PlayerSubmissionForm 
+          fields={FIELDS} 
+          addSubmissionCallback={this.addRecentSubmission}
+          round={this.state.round}
+        />
 
         <FinalPoem />
 
@@ -87,5 +95,6 @@ const FIELDS = [
 Game.propTypes = {
   addRecentSubmission: PropTypes.func,
   fields: PropTypes.array,
+  round: PropTypes.number
 }
 export default Game;

@@ -15,6 +15,10 @@ class PlayerSubmissionForm extends Component {
     this.state = getFields
   }
 
+  resetForm = () => {
+    console.log('resetting form...')
+  }
+
   handleSubmitButton = (event) => {
     event.preventDefault();
  
@@ -22,6 +26,7 @@ class PlayerSubmissionForm extends Component {
     let sentence = Object.values(newState).join(" ")
  
     this.props.addSubmissionCallback(sentence)
+    this.resetForm();
   }
 
   onValueChange = (event) => {
@@ -40,7 +45,7 @@ class PlayerSubmissionForm extends Component {
     });
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{}</h3>
+        <h3>Player Submission Form for Player #{this.props.round}</h3>
 
         <form onSubmit={this.handleSubmitButton} className="PlayerSubmissionForm__form" >
           <div className="PlayerSubmissionForm__poem-inputs">
