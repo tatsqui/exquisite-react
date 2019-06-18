@@ -8,6 +8,10 @@ class Game extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      finalSubmission: [],
+      recentLine: ''
+    }
   }
 
   render() {
@@ -34,7 +38,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields={FIELDS} />
 
         <FinalPoem />
 
