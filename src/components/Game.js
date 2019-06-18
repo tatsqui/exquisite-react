@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './Game.css';
 import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
@@ -12,6 +13,11 @@ class Game extends Component {
       finalSubmission: [],
       recentLine: ''
     }
+  }
+
+  addRecentSubmission = (newLine) => {
+    console.log('You got the callback!')
+    // console.log(newLine)
   }
 
   render() {
@@ -38,7 +44,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm fields={FIELDS} />
+        <PlayerSubmissionForm fields={FIELDS} addSubmissionCallback={this.addRecentSubmission}/>
 
         <FinalPoem />
 
@@ -77,4 +83,8 @@ const FIELDS = [
   ".",
 ];
 
+Game.propTypes = {
+  addRecentSubmission: PropTypes.func,
+  fields: PropTypes.array,
+}
 export default Game;

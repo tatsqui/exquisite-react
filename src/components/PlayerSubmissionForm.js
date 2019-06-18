@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import './PlayerSubmissionForm.css';
 
 class PlayerSubmissionForm extends Component {
@@ -50,4 +51,17 @@ class PlayerSubmissionForm extends Component {
   }
 }
 
+PlayerSubmissionForm.propTypes = {
+  fields: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      adj1: PropTypes.string.isRequired,
+      adj2: PropTypes.string.isRequired,
+      adv: PropTypes.string.isRequired,
+      verb: PropTypes.string.isRequired,
+      noun1: PropTypes.string.isRequired,
+      noun2: PropTypes.string.isRequired,
+    })
+  ])
+}
 export default PlayerSubmissionForm;
