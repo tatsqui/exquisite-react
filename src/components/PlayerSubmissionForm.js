@@ -27,10 +27,12 @@ class PlayerSubmissionForm extends Component {
     event.preventDefault();
 
     let newState = this.state
-    console.log(event.target)
-    let sentence = Object.values(newState).join(" ")
-    
-    this.props.addSubmissionCallback(sentence)
+   
+    let words = Object.values(newState)
+    let completeSentence = `The ${words.slice(0, 4).join(' ')} the ${words.slice(4, words.length).join(' ')}.`
+    console.log(completeSentence)
+
+    this.props.addSubmissionCallback(completeSentence)
     this.resetForm();
   }
 
