@@ -12,7 +12,8 @@ class Game extends Component {
     this.state = {
       finalSubmission: [],
       recentLine: '',
-      round: 1
+      round: 1,
+      revealSection: false,
     }
   }
 
@@ -23,6 +24,13 @@ class Game extends Component {
 
     this.setState(newState)
     
+  }
+
+  showSection = () => {
+    let newState = this.state
+    newState.revealSection = true;
+    
+    this.setState(newState);
   }
 
   render() {
@@ -55,7 +63,11 @@ class Game extends Component {
           round={this.state.round}
         />
 
-        <FinalPoem />
+        <FinalPoem 
+          allSubmissions={this.state.finalSubmission} 
+          revealContent={this.state.revealSection} 
+          showSectionCallback={this.showSection}
+        />
 
       </div>
     );
