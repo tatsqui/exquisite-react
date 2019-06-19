@@ -63,7 +63,10 @@ class Game extends Component {
           { exampleFormat }
         </p>
         
-        <RecentSubmission recentLine={this.mostRecentLine()}/>
+        <RecentSubmission 
+          recentLine={this.mostRecentLine()}
+          showContent={!this.state.revealSection}
+        />
 
         <PlayerSubmissionForm 
           fields={FIELDS} 

@@ -25,10 +25,11 @@ class PlayerSubmissionForm extends Component {
 
   handleSubmitButton = (event) => {
     event.preventDefault();
- 
+
     let newState = this.state
+    console.log(event.target)
     let sentence = Object.values(newState).join(" ")
- 
+    
     this.props.addSubmissionCallback(sentence)
     this.resetForm();
   }
@@ -39,16 +40,29 @@ class PlayerSubmissionForm extends Component {
     this.setState({[name]: value});
   }
 
+  turnFieldPink = (value) => {
+    if (value.length < 1) {
+      return 'PlayerSubmissionFormt__input--invalid';
+    }
+  }
+
   render() {
 
     
     const inputFields = this.props.fields.map( (field, i) => {
       if (field.key) {
-        return <input key={i} name={field.key} value={this.state[field.key]} onChange={this.onValueChange} placeholder="adjective" type="text" />
+        return <input 
+          key={i} 
+          name={field.key} 
+          value={this.state[field.key]} 
+          onChange={this.onValueChange} 
+          className={this.turnFieldPink(this.state[field.key])}
+          placeholder={field.placeholder} type="text" />
       } else {
         return field
       }
     });
+   
     if (this.props.showContent) {
     return (
       <div className="PlayerSubmissionForm">
