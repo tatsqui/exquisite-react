@@ -11,7 +11,6 @@ class Game extends Component {
     super(props);
     this.state = {
       finalSubmission: [],
-      recentLine: '',
       round: 1,
       revealSection: false,
     }
@@ -24,6 +23,13 @@ class Game extends Component {
 
     this.setState(newState)
     
+  }
+
+  mostRecentLine = () => {
+    const recentLineIndex = this.state.finalSubmission.length - 1;
+    const mostRecentLine = this.state.finalSubmission[recentLineIndex];
+
+    return mostRecentLine;
   }
 
   showSection = () => {
@@ -43,6 +49,8 @@ class Game extends Component {
       }
     }).join(" ");
 
+    // wave 3: make components hide when final poem is submitted. 
+
     return (
       <div className="Game">
         <h2>Game</h2>
@@ -54,18 +62,20 @@ class Game extends Component {
         <p className="Game__format-example">
           { exampleFormat }
         </p>
-
-        <RecentSubmission />
+        
+        <RecentSubmission recentLine={this.mostRecentLine()}/>
 
         <PlayerSubmissionForm 
           fields={FIELDS} 
           addSubmissionCallback={this.addRecentSubmission}
           round={this.state.round}
+          showContent={!this.state.revealSection}
+          showSectionCallback={this.showSection}
         />
 
         <FinalPoem 
           allSubmissions={this.state.finalSubmission} 
-          revealContent={this.state.revealSection} 
+          showContent={this.state.revealSection} 
           showSectionCallback={this.showSection}
         />
 

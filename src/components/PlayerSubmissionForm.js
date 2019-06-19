@@ -40,6 +40,8 @@ class PlayerSubmissionForm extends Component {
   }
 
   render() {
+
+    
     const inputFields = this.props.fields.map( (field, i) => {
       if (field.key) {
         return <input key={i} name={field.key} value={this.state[field.key]} onChange={this.onValueChange} placeholder="adjective" type="text" />
@@ -47,6 +49,7 @@ class PlayerSubmissionForm extends Component {
         return field
       }
     });
+    if (this.props.showContent) {
     return (
       <div className="PlayerSubmissionForm">
         <h3>Player Submission Form for Player #{this.props.round}</h3>
@@ -61,6 +64,9 @@ class PlayerSubmissionForm extends Component {
         </form>
       </div>
     );
+    } else {
+      return null;
+    }
   }
 }
 

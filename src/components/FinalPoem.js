@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-  const {allSubmissions, revealContent, showSectionCallback} = props
+  const {allSubmissions, showContent, showSectionCallback} = props
 
 
   const handleButtonClicked = (event) => {
@@ -19,7 +19,7 @@ const FinalPoem = (props) => {
     })
   }
 
-  if (revealContent) {
+  if (showContent) {
     return (
       <div className="FinalPoem">
         <section className="FinalPoem__poem">
