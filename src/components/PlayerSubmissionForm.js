@@ -57,7 +57,7 @@ class PlayerSubmissionForm extends Component {
           key={i} 
           name={field.key} 
           value={this.state[field.key]} 
-          onChange={this.onValueChange} 
+          onChange={this.onValueChange} // could use a closure instead?...
           className={this.turnFieldPink(this.state[field.key])}
           placeholder={field.placeholder} type="text" />
       } else {
